@@ -12,6 +12,7 @@ export default function HomeScreen({ navigation }) {
           title="Go to Details"
           onPress={() => navigation.navigate('Details')}
         />
+        
       </View>
       <View style={styles.buttonContainer}>
         <Button

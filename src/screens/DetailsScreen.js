@@ -12,6 +12,7 @@ export default function DetailsScreen({ navigation }) {
           title="Go to Home"
           onPress={() => navigation.navigate('Home')}
         />
+        
       </View>
       <View style={styles.buttonContainer}>
         <Button

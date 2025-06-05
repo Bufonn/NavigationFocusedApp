@@ -16,6 +16,7 @@ export default function DetailsScreen({ navigation }) {
         value={login}
         onChangeText={setLogin}
       />
+      
 
       <Text style={styles.label}>Senha:</Text>
       <TextInput
