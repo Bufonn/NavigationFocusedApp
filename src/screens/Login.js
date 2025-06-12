@@ -1,12 +1,26 @@
-import React, { useState } from 'react';
-import LoginVerify from './src/LoginVerify';
-import { View, Text, Button, StyleSheet, Dimensions } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Button, StyleSheet, TextInput, Dimensions } from 'react-native';
+import { loginVerification, saveLogin } from '../src/LoginVerify';
 
-const windowWidth = Dimensions.get('window').width;
-
-export default function DetailsScreen({ navigation }) {
+export default function Login({ navigation }) {
   const [login, setLogin] = useState('');
   const [senha, setSenha] = useState('');
+
+  useEffect(() => {
+    loginVerification(navigation);
+  }, []);
+
+  const loginVerify = () => {
+    if (login === "admin" && senha === "1234") {
+      saveLogin(login, senha);
+      navigation.navigate('Home');
+    } else {
+      alert("Usuário ou senha incorretos");
+    }
+  };
+
+  const windowWidth = Dimensions.get('window').width;
+
   return (
     <View style={styles.form}>
       <Text style={styles.label}>Nome de Usuário:</Text>
@@ -16,21 +30,17 @@ export default function DetailsScreen({ navigation }) {
         value={login}
         onChangeText={setLogin}
       />
-      
-
       <Text style={styles.label}>Senha:</Text>
       <TextInput
         style={styles.input}
-        keyboardType="default"
         secureTextEntry={true}
         value={senha}
         onChangeText={setSenha}
       />
-
       <View style={styles.buttonContainer}>
         <Button
           title="Log-in"
-          onPress={() => LoginVerify(login, senha, navigation)}
+          onPress={loginVerify}
         />
       </View>
     </View>
@@ -64,5 +74,3 @@ const styles = StyleSheet.create({
   }
 
 });
-
-
